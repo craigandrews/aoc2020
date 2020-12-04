@@ -1,8 +1,10 @@
-/^$/{
-    print length(fields)
+function check_passport() {
     if (length(fields) == 7) {
         count++
     }
+}
+/^$/{
+    check_passport()
     delete fields
 }
 {
@@ -14,8 +16,6 @@
     }
 }
 END {
-    if (length(fields) == 7) {
-        count++
-    }
+    check_passport()
     print count
 }
