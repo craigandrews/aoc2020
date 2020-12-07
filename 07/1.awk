@@ -11,12 +11,9 @@ function get_containers(b) {
 }
 {
     c=$1" "$2
-    print c
     for (i = 5; i<NF; i+=4) {
         n=$i
         d=$(i+1)" "$(i+2)
-        print n,d
-
         bag_containers[d][c] = 1
     }
 }
