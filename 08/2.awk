@@ -3,7 +3,7 @@ function copy(a, b) {
         b[i] = a[i]
     }
 }
-function exec(pc, acc, trace, changed, _l, _r, _opcode, _trace) {
+function exec(pc, acc, trace, changed, _opcode, _trace) {
     # If this address has been trace, we failed
     if (trace[pc] == 1) {
         return "error"
@@ -27,19 +27,19 @@ function exec(pc, acc, trace, changed, _l, _r, _opcode, _trace) {
 
     # Fork a NOP only if nothing changed yet, or actually a NOP
     if (changed != 1 || _opcode == "nop") {
-        _l = exec(pc + 1, acc, _trace, _opcode == "nop" ? changed : 1)
+        r = exec(pc + 1, acc, _trace, _opcode == "nop" ? changed : 1)
 
-        if (_l != "error") {
-            return _l
+        if (r != "error") {
+            return r
         }
     }
 
     # Fork a JMP only if nothing changed yet, or actually a JMP
     if (changed != 1 ||_opcode == "jmp") {
-        _r = exec(pc + mem[pc]["operand"], acc, _trace, _opcode == "jmp" ? changed : 1)
+        r = exec(pc + mem[pc]["operand"], acc, _trace, _opcode == "jmp" ? changed : 1)
 
-        if (_r != "error") {
-            return _r
+        if (r != "error") {
+            return r
         }
     }
 
