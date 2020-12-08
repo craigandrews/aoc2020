@@ -21,8 +21,7 @@ function exec(pc, acc, seen, changed, _l, _r, _opcode, _seen) {
     _opcode = mem[pc]["opcode"]
 
     if (_opcode == "acc") {
-        v = exec(pc + 1, acc + mem[pc]["operand"], _seen, changed, indent)
-        return v
+        return exec(pc + 1, acc + mem[pc]["operand"], _seen, changed, indent)
     }
 
     # Fork a NOP only if nothing changed yet, or actually a NOP
