@@ -8,9 +8,7 @@ NR > 25 && target == 0 {
         for (y = x + 1; y < NR; y++) {
             if (data[y] >= $1) continue
 
-            if (data[x] + data[y] == $1) {
-                next
-            }
+            if (data[x] + data[y] == $1) next
         }
     }
     target = $1
