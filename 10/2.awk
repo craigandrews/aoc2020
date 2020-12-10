@@ -31,8 +31,7 @@ END {
         if (d == 1) {
             x++
         } else if (d == 3) {
-            y = tribonacci(x)
-            t = t * y
+            t = t * tribonacci(x)
             x = 0
         }
     }
