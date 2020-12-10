@@ -1,6 +1,6 @@
 function combinations(l) {
-    if (l <= 0) return 1
-    if (l == 1) return 2
+    if (l <= 1) return 1
+    if (l == 2) return 2
     return combinations(l-1) + combinations(l - 2) + combinations(l - 3)
 }
 {
@@ -22,7 +22,7 @@ END {
         if (d == 1) {
             x++
         } else if (d == 3) {
-            t = t * combinations(x - 1)
+            t = t * combinations(x)
             x = 0
         }
     }
