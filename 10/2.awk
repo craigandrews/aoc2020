@@ -1,7 +1,16 @@
-function combinations(l) {
-    if (l <= 1) return 1
-    if (l == 2) return 2
-    return combinations(l-1) + combinations(l - 2) + combinations(l - 3)
+function tribonacci(x, _t, _r, _i) {
+    split("001", _t, "")
+    _r = 1
+
+    for (_i = 0; _i < x; _i++) {
+        _r = _t[1] + _t[2] + _t[3]
+
+        _t[1] = _t[2]
+        _t[2] = _t[3]
+        _t[3] = _r
+    }
+
+    return _r
 }
 {
     data[NR] = $1
@@ -22,7 +31,8 @@ END {
         if (d == 1) {
             x++
         } else if (d == 3) {
-            t = t * combinations(x)
+            y = tribonacci(x)
+            t = t * y
             x = 0
         }
     }
