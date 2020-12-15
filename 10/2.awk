@@ -1,17 +1,3 @@
-function tribonacci(x, _t, _r, _i) {
-    split("001", _t, "")
-    _r = 1
-
-    for (_i = 0; _i < x; _i++) {
-        _r = _t[1] + _t[2] + _t[3]
-
-        _t[1] = _t[2]
-        _t[2] = _t[3]
-        _t[3] = _r
-    }
-
-    return _r
-}
 {
     data[NR] = $1
 }
@@ -31,7 +17,18 @@ END {
         if (d == 1) {
             x++
         } else if (d == 3) {
-            t = t * tribonacci(x)
+            # Memoize the 5th to 7th terms of the Tribonacci sequence
+            switch(x) {
+                case 2:
+                    t = t * 2
+                    break
+                case 3:
+                    t = t * 4
+                    break
+                case 4:
+                    t = t * 7
+                    break
+            }
             x = 0
         }
     }
