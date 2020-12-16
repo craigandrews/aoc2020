@@ -1,8 +1,3 @@
-function combinations(l) {
-    if (l <= 1) return 1
-    if (l == 2) return 2
-    return combinations(l-1) + combinations(l - 2) + combinations(l - 3)
-}
 {
     data[NR] = $1
 }
@@ -22,7 +17,18 @@ END {
         if (d == 1) {
             x++
         } else if (d == 3) {
-            t = t * combinations(x)
+            # Memoize the 5th to 7th terms of the Tribonacci sequence
+            switch(x) {
+                case 2:
+                    t = t * 2
+                    break
+                case 3:
+                    t = t * 4
+                    break
+                case 4:
+                    t = t * 7
+                    break
+            }
             x = 0
         }
     }
